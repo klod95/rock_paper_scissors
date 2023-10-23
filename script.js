@@ -6,25 +6,31 @@ function getComputerChoice() {
 let scoreComputer = 0;
 let scorePlayer = 0;
 
+
+
 function theOneRoundPlay(computerSelection,playerSelection) {
+    let result = document.querySelector('.results');
+    let reslist = document.createElement('p');
+    reslist.className = 'dlt';
     if (playerSelection == computerSelection) {
-        let result = document.querySelector(".results");
-        let reslist = document.createElement('p');
+        // let result = document.querySelector(".results");
+        // let reslist = document.createElement('p');
         reslist.textContent = "Its a tie, Try again" + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
-        result.appendChild(reslist);
+        // result.appendChild(reslist);
      } else if ((playerSelection === "ROCK" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection === "PAPER") || (playerSelection === "PAPER" && computerSelection === "ROCK")) {
-        let result = document.querySelector('.results');
-        let reslist = document.createElement('p');
+        // let result = document.querySelector('.results');
+        // let reslist = document.createElement('p');
         scorePlayer++
         reslist.textContent = "You win! " + playerSelection.toLowerCase() +" beats " + computerSelection.toLowerCase() + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
-        result.appendChild(reslist);
+        // result.appendChild(reslist);
     } else {
-        let result = document.querySelector('.results');
-        let reslist = document.createElement('p');
+        // let result = document.querySelector('.results');
+        // let reslist = document.createElement('p');
         scoreComputer++
         reslist.textContent = "You lose! " + computerSelection.toLowerCase() +" beats " + playerSelection.toLowerCase() + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
-        result.appendChild(reslist);
+        // result.appendChild(reslist);
     }
+    result.appendChild(reslist);
 };
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
@@ -48,23 +54,44 @@ scissors.addEventListener('click',() => {
     theOneRoundPlay(computerSelection,playerSelection);
     winerScore(scoreComputer,scorePlayer);
 });
+//-----only display once if declered are outside
+let result = document.querySelector('.results');
+let reslist = document.createElement('li');
+reslist.className = 'dlt';
+//----
 
 function winerScore(scoreComputer,scorePlayer) {
+   
     if ((scoreComputer === 5) || (scorePlayer === 5)) {
-        if (scoreComputer > scorePlayer) {
-            let result = document.querySelector('.results');
-            let reslist = document.createElement('li');
-            reslist.textContent = "Computer wins with " + scoreComputer + " wins ";
             result.appendChild(reslist);
+            clearbtn.textContent = "Clear score";
+            clearr.appendChild(clearbtn);
+            
+        if (scoreComputer > scorePlayer) {
+            // let result = document.querySelector('.results');
+            // let reslist = document.createElement('li');
+            reslist.textContent = "Computer wins with " + scoreComputer + " wins ";
+            // result.appendChild(reslist);
+            // clearbtn.textContent = "Clear score";
+            // clearr.appendChild(clearbtn);
         } 
         else if (scorePlayer > scoreComputer) { 
-            let result = document.querySelector('.results');
-            let reslist = document.createElement('li');
+            // let result = document.querySelector('.results');
+            // let reslist = document.createElement('li');
             reslist.textContent = "Player wins with " + scorePlayer + " wins ";
-            result.appendChild(reslist);
+            // result.appendChild(reslist);
+            // clearbtn.textContent = "Clear score";
+            // clearr.appendChild(clearbtn);   
         } 
     } 
 };
+let clearr = document.querySelector(".clear");
+let clearbtn = document.createElement("button");
+clearbtn.className = 'remmovbtn';
+clearbtn.addEventListener("click",() => {
+    document.querySelector(".dlt").remove();
+});
+
 
 
 

@@ -11,13 +11,13 @@ function theOneRoundPlay(computerSelection,playerSelection) {
     let reslist = document.createElement('p');
     reslist.className = 'dlt';
     if (playerSelection == computerSelection) {
-        reslist.textContent = "Its a tie, Try again" + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
+        reslist.textContent = "Its a tie, Try again" + "   ||| Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer + "   |||";
      } else if ((playerSelection === "ROCK" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection === "PAPER") || (playerSelection === "PAPER" && computerSelection === "ROCK")) {
         scorePlayer++
-        reslist.textContent = "You win! " + playerSelection.toLowerCase() +" beats " + computerSelection.toLowerCase() + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
+        reslist.textContent = "You win! " + playerSelection.toLowerCase() +" beats " + computerSelection.toLowerCase() + "  ||| Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer + "   |||";
     } else {
         scoreComputer++
-        reslist.textContent = "You lose! " + computerSelection.toLowerCase() +" beats " + playerSelection.toLowerCase() + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
+        reslist.textContent = "You lose! " + computerSelection.toLowerCase() +" beats " + playerSelection.toLowerCase() + "  ||| Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer + '   |||';
     }
     result.appendChild(reslist);
 };

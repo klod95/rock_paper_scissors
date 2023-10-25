@@ -5,30 +5,19 @@ function getComputerChoice() {
 }
 let scoreComputer = 0;
 let scorePlayer = 0;
-
-
-
+// play only one round 
 function theOneRoundPlay(computerSelection,playerSelection) {
     let result = document.querySelector('.results');
     let reslist = document.createElement('p');
     reslist.className = 'dlt';
     if (playerSelection == computerSelection) {
-        // let result = document.querySelector(".results");
-        // let reslist = document.createElement('p');
         reslist.textContent = "Its a tie, Try again" + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
-        // result.appendChild(reslist);
      } else if ((playerSelection === "ROCK" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection === "PAPER") || (playerSelection === "PAPER" && computerSelection === "ROCK")) {
-        // let result = document.querySelector('.results');
-        // let reslist = document.createElement('p');
         scorePlayer++
         reslist.textContent = "You win! " + playerSelection.toLowerCase() +" beats " + computerSelection.toLowerCase() + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
-        // result.appendChild(reslist);
     } else {
-        // let result = document.querySelector('.results');
-        // let reslist = document.createElement('p');
         scoreComputer++
         reslist.textContent = "You lose! " + computerSelection.toLowerCase() +" beats " + playerSelection.toLowerCase() + " Computer : " + scoreComputer + " vs" + " Player : " + scorePlayer;
-        // result.appendChild(reslist);
     }
     result.appendChild(reslist);
 };
@@ -37,18 +26,27 @@ const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
 
 rock.addEventListener('click',() => {
+    if (scoreComputer === 5 || scorePlayer === 5) {
+        return;
+    }
     computerSelection = getComputerChoice();
     playerSelection = 'ROCK';
     theOneRoundPlay(computerSelection,playerSelection);
     winerScore(scoreComputer,scorePlayer);
 });
 paper.addEventListener('click',() => {
+    if (scoreComputer === 5 || scorePlayer === 5) {
+        return;
+    }
     computerSelection = getComputerChoice();
     playerSelection = 'PAPER';
     theOneRoundPlay(computerSelection,playerSelection);
     winerScore(scoreComputer,scorePlayer);
 });
 scissors.addEventListener('click',() => {
+    if (scoreComputer === 5 || scorePlayer === 5) {
+        return;
+    }
     computerSelection = getComputerChoice();
     playerSelection = 'SCISSORS';
     theOneRoundPlay(computerSelection,playerSelection);
@@ -58,8 +56,8 @@ scissors.addEventListener('click',() => {
 let result = document.querySelector('.results');
 let reslist = document.createElement('li');
 reslist.className = 'dlt';
-//----
 
+// show winer at 5 wins and apear clearScore button
 function winerScore(scoreComputer,scorePlayer) {
    
     if ((scoreComputer === 5) || (scorePlayer === 5)) {
@@ -68,81 +66,27 @@ function winerScore(scoreComputer,scorePlayer) {
             clearr.appendChild(clearbtn);
             
         if (scoreComputer > scorePlayer) {
-            // let result = document.querySelector('.results');
-            // let reslist = document.createElement('li');
             reslist.textContent = "Computer wins with " + scoreComputer + " wins ";
-            // result.appendChild(reslist);
-            // clearbtn.textContent = "Clear score";
-            // clearr.appendChild(clearbtn);
         } 
         else if (scorePlayer > scoreComputer) { 
-            // let result = document.querySelector('.results');
-            // let reslist = document.createElement('li');
-            reslist.textContent = "Player wins with " + scorePlayer + " wins ";
-            // result.appendChild(reslist);
-            // clearbtn.textContent = "Clear score";
-            // clearr.appendChild(clearbtn);   
+            reslist.textContent = "Player wins with " + scorePlayer + " wins "; 
         } 
     } 
 };
+// clear scoore, remove results from displayin and clear button.
 let clearr = document.querySelector(".clear");
 let clearbtn = document.createElement("button");
 clearbtn.className = 'remmovbtn';
 clearbtn.addEventListener("click",() => {
-    document.querySelector(".dlt").remove();
+    clearr.firstChild.remove();
+    scoreComputer = 0;
+    scorePlayer = 0;
+    while(result.firstChild){
+        result.firstChild.remove();
+    }
+    
 });
 
-
-
-
-
-
-
-
-
-
-
-// function winerCheck(computerSelection,playerSelection){
-//     if (playerSelection == computerSelection) {
-//         return "tie";
-//     } else if ((playerSelection === "ROCK" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection === "PAPER") || (playerSelection === "PAPER" && computerSelection === "ROCK")) {
-//        return "player";
-//     } else {
-//        return "computer";
-//     }
-// }
- 
-
-// function scoreCount(){
-//     let scorePlayer = 0;
-//     let scoreComputer = 0;
-    
-//     for (let i = 0; i < 5; i++) {
-//         if  (winerCheck() == "player") {
-//                 scorePlayer++;
-//             } else if (winerCheck() == "computer") {
-//                 scoreComputer++;
-//             } else {}
-//         } 
-    // if (scoreComputer > scorePlayer) {
-    //     let result = document.querySelector('.results');
-    //     let reslist = document.createElement('li');
-    //     reslist.textContent = "Computer wins with " + scoreComputer + " wins ";
-    //     result.appendChild(reslist);
-    // } 
-    // else if (scorePlayer > scoreComputer) { 
-    //     let result = document.querySelector('.results');
-    //     let reslist = document.createElement('li');
-    //     reslist.textContent = "Player wins with " + scorePlayer + " wins ";
-    //     result.appendChild(reslist);
-    // } 
-    // else { 
-    //     let result = document.querySelector('.results');
-    //     let reslist = document.createElement('li');
-    //     reslist.textContent = "ITS A FREAKING TIE with score " + scoreComputer + " - " + scorePlayer;
-    //     result.appendChild(reslist);
-    // }    
-// }   
 
 
 
